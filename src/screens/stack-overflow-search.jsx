@@ -1,6 +1,6 @@
 import React from 'react';
-import { Stack, Box, Text } from 'native-base';
-import { Heading, SearchBar, ThemeToggle, UserCard, SortBar, QuestionList } from '../components';
+import { Stack } from 'native-base';
+import { Heading, SearchBar, ThemeToggle, UserCard, SortBar, QuestionList, TotalItemsCountFooter } from '../components';
 
 const StaclOverflowSearch = () => {
   return (
@@ -11,9 +11,7 @@ const StaclOverflowSearch = () => {
       <UserCard />
       <SortBar />
       <QuestionList />
-      <Box px='10'>
-        <Text>{`Total of ${200} Question Found `}</Text>
-      </Box>
+      <TotalItemsCountFooter/>
     </Stack>
   );
 };

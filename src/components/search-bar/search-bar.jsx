@@ -13,7 +13,6 @@ function SearchBar() {
     const cancelDebounce = setTimeout(() => {
       setIsLoading(true);
       getQuestionByUserId(userIdValue).then(() => {
-        console.log('object')
         setIsLoading(false);
       });
     }, 300);

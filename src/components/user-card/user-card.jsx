@@ -8,7 +8,7 @@ export default function UserCard() {
   return !loading && user ? (
     <Box p={4}>
       <Center>
-        <HStack space='20'>
+        <HStack space='15px'>
           <Avatar
             size='xl'
             source={{
