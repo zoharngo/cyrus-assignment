@@ -26,6 +26,7 @@ function SearchBar() {
     <VStack alignItems='center' space={8} width='100%'>
       <VStack width='75%' space={2}>
         <Input
+          color='gray.500'ol
           onChangeText={setUserIdValue}
           value={userIdValue}
           borderColor='grey'

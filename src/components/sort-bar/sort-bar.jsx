@@ -1,8 +1,11 @@
 import React from 'react';
 import { HStack, Text, Button, Stack } from 'native-base';
+import { useStoreState } from 'easy-peasy';
 
 export default function SortBar() {
-  return (
+  const { questionsCount } = useStoreState((state) => state.stacklOverflowSearchReducer);
+
+  return questionsCount ? (
     <Stack alignItems='center' height='3'>
       <HStack alignItems='center' space='2'>
         <Text>Sort Questions By:</Text>
@@ -19,5 +22,5 @@ export default function SortBar() {
         </Button.Group>
       </HStack>
     </Stack>
-  );
+  ) : null;
 }

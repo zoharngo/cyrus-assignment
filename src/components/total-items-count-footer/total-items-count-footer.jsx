@@ -5,12 +5,11 @@ import { useStoreState } from 'easy-peasy';
 function TotalItemsCountFooter() {
   const { questionsCount } = useStoreState((state) => state.stacklOverflowSearchReducer);
 
-  return (
+  return questionsCount ? (
     <Box px='10'>
       <Text>{`Total of ${questionsCount} Question Found `}</Text>
     </Box>
-  );
+  ) : null;
 }
-
 
 export default TotalItemsCountFooter;

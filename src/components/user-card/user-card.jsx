@@ -1,11 +1,11 @@
 import React from 'react';
 import { Box, Avatar, Center, HStack, VStack, Text } from 'native-base';
 import { useStoreState } from 'easy-peasy';
+import { withLoader } from '../../hoc/with-loader';
 
-export default function UserCard() {
-  const { user, loading } = useStoreState((state) => state.stacklOverflowSearchReducer);
-  console.log(user);
-  return !loading && user ? (
+function UserCard() {
+  const { user } = useStoreState((state) => state.stacklOverflowSearchReducer);
+  return user ? (
     <Box p={4}>
       <Center>
         <HStack space='15px'>
@@ -34,3 +34,5 @@ export default function UserCard() {
     </Box>
   ) : null;
 }
+
+export default withLoader(UserCard) ;

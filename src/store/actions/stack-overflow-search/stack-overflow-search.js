@@ -1,4 +1,5 @@
 import { action, thunk } from 'easy-peasy';
+import { Alert } from 'native-base';
 
 const saveQuestions = action((state, payload) => {
   const { items = [] } = payload;
@@ -41,15 +42,14 @@ const getQuestionByUserId = thunk(async (actions, payload) => {
     const res = await fetch(
       `https://api.stackexchange.com/2.3/users/${payload}/questions?order=desc&sort=activity&site=stackoverflow`
     );
-    console.log('res.ok',res.ok)
     if (!res.ok) {
       throw new Error('Network response was not ok');
     }
     const questions = await res.json();
-    console.log(questions);
     actions.saveQuestions(questions);
     actions.saveAvatar(questions);
   } catch (err) {
+    Alert.
     console.error(err);
   }
 });
