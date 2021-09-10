@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { HStack, Text, Button, Stack } from 'native-base';
 import { useStoreState, useStoreActions } from 'easy-peasy';
 import { SORT_BY } from './constants';
 
 export default function SortBar() {
   const [sortValue, setSortValue] = useState('');
-  const { questionsCount } = useStoreState((state) => state.stacklOverflowSearchReducer);
+  const { questionsCount, questions } = useStoreState((state) => state.stacklOverflowSearchReducer);
   const { sortBy } = useStoreActions((actions) => actions.stacklOverflowSearchReducer);
 
   const onSortBy = (value) => {
@@ -14,6 +14,10 @@ export default function SortBar() {
       setSortValue(value);
     }
   };
+
+  useEffect(() => {
+    setSortValue('');
+  }, [questions]);
 
   return questionsCount ? (
     <Stack alignItems='center' height='3'>
