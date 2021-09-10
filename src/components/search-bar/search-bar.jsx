@@ -15,7 +15,7 @@ function SearchBar() {
       getQuestionByUserId(userIdValue).then(() => {
         setIsLoading(false);
       });
-    }, 300);
+    }, 1500);
 
     return () => {
       clearTimeout(cancelDebounce);

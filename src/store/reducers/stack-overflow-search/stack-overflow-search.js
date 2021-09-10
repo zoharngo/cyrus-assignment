@@ -6,7 +6,7 @@ const stacklOverflowSearchReducer = {
   loading: false,
   user: null,
   questionsCount: computed((state) => state.questions.length),
-
+  sortBy: stackOverflowSearch.sortBy,
   saveQuestions: stackOverflowSearch.saveQuestions,
   saveAvatar: stackOverflowSearch.saveAvatar,
   setIsLoading: stackOverflowSearch.setIsLoading,

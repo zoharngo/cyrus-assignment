@@ -1,5 +1,5 @@
 import { action, thunk } from 'easy-peasy';
-import { Alert } from 'native-base';
+import { SORT_BY } from '../../../components/sort-bar/constants';
 
 const saveQuestions = action((state, payload) => {
   const { items = [] } = payload;
@@ -8,10 +8,19 @@ const saveQuestions = action((state, payload) => {
     return;
   }
   const questions = items.map((question) => {
-    const { title, question_id } = question;
+    const {
+      title,
+      question_id: questionId,
+      answer_count: answerCount,
+      creation_date: creationDate,
+      view_count: viewCount,
+    } = question;
     return {
       title,
-      questionId: question_id,
+      questionId,
+      answerCount,
+      creationDate,
+      viewCount,
     };
   });
   state.questions = questions;
@@ -37,6 +46,10 @@ const setIsLoading = action((state, payload) => {
   state.loading = payload;
 });
 
+const sortBy = action((state, payload = SORT_BY.date) => {
+  state.questions.sort((q1, q2) => q1[payload] - q2[payload]);
+});
+
 const getQuestionByUserId = thunk(async (actions, payload) => {
   try {
     const res = await fetch(
@@ -49,7 +62,6 @@ const getQuestionByUserId = thunk(async (actions, payload) => {
     actions.saveQuestions(questions);
     actions.saveAvatar(questions);
   } catch (err) {
-    Alert.
     console.error(err);
   }
 });
@@ -59,4 +71,5 @@ export default {
   saveAvatar,
   setIsLoading,
   getQuestionByUserId,
+  sortBy,
 };
