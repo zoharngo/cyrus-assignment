@@ -29,15 +29,22 @@ const saveQuestions = action((state, payload) => {
 const saveAvatar = action((state, payload) => {
   const { items = [] } = payload;
   if (!items.length) {
-    state.user = null;
-    console.log('empty user');
+    state.user = undefined;
     return;
   }
-  const { profile_image = '', display_name = '', reputation = '', accept_rate = '' } = items[0]?.owner;
+  const {
+    user_id: userId,
+    profile_image: profileImage = '',
+    display_name: displayName = '',
+    accept_rate: acceptRate = '',
+    reputation = '',
+  } = items[0]?.owner;
+
   state.user = {
-    displayName: display_name,
-    acceptRate: accept_rate,
-    profileImage: profile_image,
+    userId,
+    profileImage,
+    displayName,
+    acceptRate,
     reputation,
   };
 });

@@ -4,8 +4,10 @@ import { useStoreState, useStoreActions } from 'easy-peasy';
 import { SORT_BY } from './constants';
 
 export default function SortBar() {
+  const { questionsCount, user = {} } = useStoreState((state) => state.stacklOverflowSearchReducer);
   const [sortValue, setSortValue] = useState('');
-  const { questionsCount, questions } = useStoreState((state) => state.stacklOverflowSearchReducer);
+  const [userId, setUserId] = useState(userId);
+
   const { sortBy } = useStoreActions((actions) => actions.stacklOverflowSearchReducer);
 
   const onSortBy = (value) => {
@@ -16,8 +18,11 @@ export default function SortBar() {
   };
 
   useEffect(() => {
-    setSortValue('');
-  }, [questions]);
+    if (userId !== user?.userId) {
+      setUserId(user.userId);
+      setSortValue('');
+    }
+  }, [user]);
 
   return questionsCount ? (
     <Stack alignItems='center' height='3'>

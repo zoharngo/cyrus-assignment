@@ -4,7 +4,7 @@ import stackOverflowSearch from '../../actions/stack-overflow-search/stack-overf
 const stacklOverflowSearchReducer = {
   questions: [],
   loading: false,
-  user: null,
+  user: undefined,
   questionsCount: computed((state) => state.questions.length),
   sortBy: stackOverflowSearch.sortBy,
   saveQuestions: stackOverflowSearch.saveQuestions,
