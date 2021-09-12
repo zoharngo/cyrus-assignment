@@ -1,1 +1,1 @@
-export { default as stacklOverflowSearchActions } from "./stack-overflow-search/stack-overflow-search";
+export { default as stackOverflowSearchActions } from "./stack-overflow-search/actions";

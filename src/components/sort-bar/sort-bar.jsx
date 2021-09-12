@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { HStack, Text, Button, Stack } from 'native-base';
-import { useStoreState, useStoreActions } from 'easy-peasy';
+import { HStack, Text, Button, Center } from 'native-base';
+import { useStoreActions } from 'easy-peasy';
 import { SORT_BY } from './constants';
+import propTypes from 'prop-types';
 
-export default function SortBar() {
-  const { questionsCount, user = {} } = useStoreState((state) => state.stacklOverflowSearchReducer);
+function SortBar({ itemsCount, user = {} }) {
   const [sortValue, setSortValue] = useState('');
-  const [userId, setUserId] = useState(userId);
+  const [userId, setUserId] = useState(user?.userId);
 
-  const { sortBy } = useStoreActions((actions) => actions.stacklOverflowSearchReducer);
+  const { sortByAction } = useStoreActions((actions) => actions.stacklOverflowSearchReducer);
 
   const onSortBy = (value) => {
     if (sortValue !== value) {
-      sortBy(value);
+      sortByAction(value);
       setSortValue(value);
     }
   };
@@ -24,10 +24,10 @@ export default function SortBar() {
     }
   }, [user]);
 
-  return questionsCount ? (
-    <Stack alignItems='center' height='3'>
+  return itemsCount ? (
+    <Center>
       <HStack alignItems='center' space='2'>
-        <Text>Sort Questions By:</Text>
+        <Text numberOfLines={1} >Sort Questions By:</Text>
         <Button.Group variant='solid' isAttached space={1}>
           <Button
             size='xs'
@@ -55,6 +55,12 @@ export default function SortBar() {
           </Button>
         </Button.Group>
       </HStack>
-    </Stack>
+    </Center>
   ) : null;
 }
+
+SortBar.propTypes = {
+  itemsCount: propTypes.number,
+  user: propTypes.object,
+};
+export default SortBar;

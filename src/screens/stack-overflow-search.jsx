@@ -1,18 +1,20 @@
 import React from 'react';
-import { Stack } from 'native-base';
-import { Heading, SearchBar, ThemeToggle, UserCard, SortBar, QuestionList, TotalItemsCountFooter } from '../components';
+import { Box, VStack } from 'native-base';
+import { Heading, SearchBar, ThemeToggle, SearchResultsContainer } from '../components';
 
 const StaclOverflowSearch = () => {
   return (
-    <Stack space={7}>
-      <ThemeToggle />
-      <Heading headerText='Get Stackoverflow Posts' />
-      <SearchBar />
-      <UserCard />
-      <SortBar />
-      <QuestionList />
-      <TotalItemsCountFooter/>
-    </Stack>
+    <VStack space={4}>
+      <Box p={2}>
+        <ThemeToggle />
+      </Box>
+
+      <VStack space={2}>
+        <Heading headerText='Get Stackoverflow Posts' />
+        <SearchBar />
+        <SearchResultsContainer />
+      </VStack>
+    </VStack>
   );
 };
 export default StaclOverflowSearch;

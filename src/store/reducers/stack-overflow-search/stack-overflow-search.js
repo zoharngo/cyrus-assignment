@@ -1,15 +1,8 @@
-import { computed } from 'easy-peasy';
-import stackOverflowSearch from '../../actions/stack-overflow-search/stack-overflow-search';
+import { stackOverflowSearchActions } from '../../actions';
+import INITIAL_STATE from './intial-state';
 
 const stacklOverflowSearchReducer = {
-  questions: [],
-  loading: false,
-  user: undefined,
-  questionsCount: computed((state) => state.questions.length),
-  sortBy: stackOverflowSearch.sortBy,
-  saveQuestions: stackOverflowSearch.saveQuestions,
-  saveAvatar: stackOverflowSearch.saveAvatar,
-  setIsLoading: stackOverflowSearch.setIsLoading,
-  getQuestionByUserId: stackOverflowSearch.getQuestionByUserId,
+  ...INITIAL_STATE,
+  ...stackOverflowSearchActions,
 };
 export default stacklOverflowSearchReducer;

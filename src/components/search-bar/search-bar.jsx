@@ -5,15 +5,18 @@ import { useStoreActions } from 'easy-peasy';
 
 function SearchBar() {
   const [userIdValue, setUserIdValue] = useState('');
-  const { getQuestionByUserId, setIsLoading } = useStoreActions((actions) => actions.stacklOverflowSearchReducer);
+  const { getQuestionByUserIdAction, setIsLoadingAction, clearStateAction } = useStoreActions(
+    (actions) => actions.stacklOverflowSearchReducer
+  );
   useEffect(() => {
     if (!userIdValue || !/^\d*$/.test(userIdValue)) {
+      clearStateAction();
       return;
     }
     const cancelDebounce = setTimeout(() => {
-      setIsLoading(true);
-      getQuestionByUserId(userIdValue).then(() => {
-        setIsLoading(false);
+      setIsLoadingAction(true);
+      getQuestionByUserIdAction(userIdValue).then(() => {
+        setIsLoadingAction(false);
       });
     }, 1500);
 
@@ -26,7 +29,7 @@ function SearchBar() {
     <VStack alignItems='center' space={8} width='100%'>
       <VStack width='75%' space={2}>
         <Input
-          color='gray.500'ol
+          color='gray.500'
           onChangeText={setUserIdValue}
           value={userIdValue}
           borderColor='grey'
@@ -40,7 +43,9 @@ function SearchBar() {
           _web={{
             _focus: { borderColor: 'muted.300', style: { boxShadow: 'none' } },
           }}
-          InputLeftElement={<Icon size='sm' ml={2} color='gray.400' as={<Ionicons name='ios-search' />} />}
+          InputLeftElement={<Icon size='sm' ml={2} color='gray.400' as={<Ionicons name='ios-search' />}
+          ol
+          />}
         />
       </VStack>
     </VStack>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { Switch, HStack, Text, useColorMode } from 'native-base';
 
 const DARK_MODE = 'Dark mode';
@@ -13,7 +13,7 @@ export const ThemeToggle = () => {
     setLabel(colorMode === 'dark' ? LIGHT_MODE : DARK_MODE);
   }, [colorMode]);
   return (
-    <HStack reversed={true} space={1}>
+    <HStack reversed={true} alignItems='center'>
       <Text fontSize={'lg'}>{label}</Text>
       <Switch
         isChecked={isChecked}

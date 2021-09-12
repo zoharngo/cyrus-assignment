@@ -8,7 +8,7 @@ export default function Heading({ headerText = '' }) {
     <NativeHeading
       alignSelf={{
         base: 'center',
-        md: 'flex-start',
+        md: 'center',
       }}
     >
       <Text>{headerText}</Text>

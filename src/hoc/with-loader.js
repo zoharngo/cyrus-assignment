@@ -12,13 +12,15 @@ export function withLoader(WrappedComponent) {
     ) : (
       <View
         style={{
+          position: 'relative',
+          top: 30,
           padding: 10,
           flexDirection: 'row',
           flex: 1,
           justifyContent: 'center',
         }}
       >
-        <ActivityIndicator size="large" color='gray.400'  />
+        <ActivityIndicator size='large' color='gray.400' />
       </View>
     );
   };
